@@ -19,6 +19,7 @@ app.get('/family/:gender', mainCtrl.getFamilyGender);
 app.get('/restaurants', mainCtrl.getRestaurants);
 app.get('/restaurants/:name', mainCtrl.getRestaurantsName);
 app.get('/skillz', mainCtrl.getSkillz);
+app.get('/secrets/:username/:pin', middleware.verifyUser, mainCtrl.getSecrets);
 
 app.put('/name', mainCtrl.putName);
 app.put('/location', mainCtrl.putLocation);
@@ -27,6 +28,7 @@ app.post('/hobbies', mainCtrl.postHobbie);
 app.post('/occupations', mainCtrl.postOccupation);
 app.post('/family', mainCtrl.postFamily);
 app.post('/restaurants', mainCtrl.postRestaurant);
+app.post('/skillz', middleware.generateId, mainCtrl.postSkillz);
 
 
 

@@ -1,3 +1,5 @@
+var skillz = require('../skillz');
+
 module.exports = {
 
   addHeaders: function(req, res, next) {
@@ -13,8 +15,16 @@ module.exports = {
     next();
   },
   generateId: function(req,res,next) {
-
+    req.body.id = skillz.length + 1;
     next();
+  },
+  verifyUser: function(req,res,next) {
+    if (req.params.username === "joeblank" && req.params.pin === '1234') {
+      next();
+    } else {
+      var error = 'error. authentication failed';
+      res.status(402).json(error);
+    }
   }
 
 

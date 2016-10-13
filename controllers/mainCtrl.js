@@ -1,5 +1,6 @@
 var user = require('../user.js');
-var ski = require('../skillz.js')
+var skillz = require('../skillz.js');
+var secrets = require('../secrets.js');
 
 
 module.exports = {
@@ -158,15 +159,23 @@ module.exports = {
       if (req.query.experience) {
         var exp = req.query.experience;
         var newArr = [];
-        for (var i = 0; i < ski.length; i++) {
-          if (ski[i].experience === exp) {
-            newArr.push(ski[i]);
+        for (var i = 0; i < skillz.length; i++) {
+          if (skillz[i].experience === exp) {
+            newArr.push(skillz[i]);
           }
         }
         res.status(200).json(newArr);
       } else {
-        res.status(200).json(ski);
+        res.status(200).json(skillz);
       }
+    },
+    postSkillz: function(req,res,next) {
+      var newSkill = req.body;
+      skillz.push(newSkill);
+      res.status(200).json(skillz);
+    },
+    getSecrets: function(req,res,next) {
+      res.status(200).json(secrets);
     }
 
 
